@@ -1,6 +1,7 @@
 package an.gal.android.calculatorviacompose
 
 import an.gal.android.calculatorviacompose.ui.theme.CalculatorViaComposeTheme
+import an.gal.android.calculatorviacompose.ui.theme.MediumGray
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -28,33 +29,17 @@ class MainActivity : ComponentActivity() {
                 val viewModel = viewModel<CalculatorViewModel>()
                 val state = viewModel.state
                 val buttonSpacing = 8.dp
-
-                //Box
-                // A surface container using the 'background' color from the theme
-               /* Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }*/
+                
+                Calculator(
+                    state = state,
+                    onAction = viewModel::onAction,
+                    buttonSpacing = buttonSpacing,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(MediumGray)
+                        .padding(16.dp)
+                )
             }
         }
     }
 }
-
-/*
-@Composable
-fun Greeting(name: String) {
-    Column() {
-        Text(text = "Hello $name!")
-        Text(text = "Hello Everyone!")
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    CalculatorViaComposeTheme {
-        Greeting("Android")
-    }
-}*/
