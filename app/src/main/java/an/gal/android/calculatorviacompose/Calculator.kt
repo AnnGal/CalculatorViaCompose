@@ -2,6 +2,7 @@ package an.gal.android.calculatorviacompose
 
 import an.gal.android.calculatorviacompose.ui.theme.LightGray
 import an.gal.android.calculatorviacompose.ui.theme.Orange
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
@@ -29,14 +30,15 @@ fun Calculator(
                 .align(Alignment.BottomCenter),
             verticalArrangement = Arrangement.spacedBy(buttonSpacing)
         ){
+
             Text(
-                text = state.number1 + (state.operation ?: "") + state.number2,
+                text = state.number1 + (state.operation?.symbol ?: "") + state.number2,
                 textAlign = TextAlign.End,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 32.dp),
+                    .padding(vertical = 8.dp),
                 fontWeight = FontWeight.Light,
-                fontSize =  80.sp,
+                fontSize =  64.sp,
                 color = Color.White,
                 maxLines = 2
             )
@@ -84,6 +86,7 @@ fun Calculator(
                         .aspectRatio(1f)
                         .weight(1f),
                     onClick = {
+                        Log.d("composeTest", "Click 7")
                         onAction(CalculatorAction.Number(7))
                     }
                 )
